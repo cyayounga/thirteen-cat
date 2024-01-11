@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <title>13번째고양이</title>
+
+    <style>
+        @import url("https://cdn.jsdelivr.net/gh/wanteddev/wanted-sans@v1.0.1/packages/wanted-sans/fonts/webfonts/variable/split/WantedSansVariable.min.css");
+
+        body,
+        html {
+            font-family: 'Wanted Sans Variable';
+            margin: 0;
+            padding: 0;
+            background-color: #161519;
+            overflow-x: hidden;
+        }
+
+        span {
+            color: white;
+        }
+
+        b {
+            color: #FDD000;
+        }
+
+
+        .logo {
+            width: 50vw;
+            margin-left: 25vw;
+            margin-top: 1.5cm;
+        }
+
+        .logo-txt {
+            margin-top: 0.8cm;
+
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+
+            font-size: 15px;
+            font-weight: 400;
+            line-height: 1.4;
+        }
+
+        .menu-con {
+            margin-top: 2cm;
+            width: 100vw;
+            height: 25vw;
+            display: inline-block;
+        }
+
+        .menu-circle {
+            margin-left: calc(25vw / 4);
+            height: 25vw;
+            width: 25vw;
+            float: left;
+        }
+
+        .cat-start {
+            background-color: #10C3EA;
+            margin-top: 2.5cm;
+
+            margin-left: calc(50vw - 1.4cm);
+            width: 2.8cm;
+        }
+
+        .cafe-start {
+            background-color: #4a10ea;
+            margin-top: 2cm;
+
+            margin-left: calc(50vw - 1.5cm);
+            width: 3cm;
+        }
+
+        .youtube-start {
+            background-color: #E50B0B;
+            margin-top: 2cm;
+
+            margin-left: calc(50vw - 2.25cm);
+            width: 4.5cm;
+        }
+
+        .start {
+            padding-top: 1px;
+            padding-bottom: 5px;
+            color: white;
+            border-radius: 1.35cm;
+
+            text-align: center;
+            font-size: 30px;
+            font-weight: 800;
+        }
+
+        .big-con {
+            display: inline-block;
+            transition: 0.5s;
+            overflow-x: auto;
+        }
+
+        .con {
+            width: 100vw;
+            margin: 0;
+            margin-top: 0.6cm;
+            float: left;
+        }
+
+        .li-cat-con {
+            margin-left: calc(10vw / 4);
+            margin-bottom: 7px;
+            float: left;
+            font-size: 14.5px;
+            font-weight: 500;
+            text-align: center;
+        }
+
+        .li-cat-img {
+            margin-bottom: 2px;
+            width: 30vw;
+            height: 30vw;
+        }
+
+        .li-cafe-con {
+            margin-left: calc(10vw / 4);
+            margin-top: calc(10vw / 4 - 4px);
+            float: left;
+        }
+
+        .li-cafe-img {
+            width: 30vw;
+            height: 30vw;
+        }
+
+        .num-con {
+            text-align: center;
+            margin-top: 0.5cm;
+        }
+
+        .cat-sli-btn {
+            padding: 10px;
+            padding-top: 7px;
+            padding-bottom: 7px;
+            background-color: #2b2a30;
+            border-radius: 10px;
+            border: #37363a solid 2px;
+            margin: 3px;
+        }
+
+        .cafe-sli-btn {
+            padding: 10px;
+            padding-top: 7px;
+            padding-bottom: 7px;
+            background-color: #2b2a30;
+            border-radius: 10px;
+            border: #37363a solid 2px;
+            margin: 3px;
+        }
+
+        .cat-now {
+            background-color: #37363a;
+            border: #bb9a0a solid 2px;
+        }
+
+        .cafe-now {
+            background-color: #37363a;
+            border: #bb9a0a solid 2px;
+        }
+
+        .youtube-con {
+            width: 100%;
+            margin: 0;
+            margin-top: 0.6cm;
+            display: inline-block;
+        }
+
+        iframe {
+            margin-left: calc(10vw / 4);
+            margin-bottom: 15px;
+            width: calc(100vw - (10vw / 2));
+            height: calc((100vw - (10vw / 2)) * 9 / 16);
+        }
+    </style>
+</head>
+
+<body>
+    <img class="logo" src="./img/logo-white.png" alt="로고">
+    <br><span class="logo-txt"><b>13번째고양이는</b>언제나 올바른 반려문화를 지향하겠습니다</span>
+
+    <div class="menu-con">
+        <img class="menu-cat menu-circle" src="./img/cat-circle.png" alt="고양이메뉴">
+        <img class="menu-cafe menu-circle" src="./img/cafe-circle.png" alt="카페메뉴">
+        <img class="menu-you menu-circle" src="./img/youtube-circle.png" alt="유튜브메뉴">
+    </div>
+
+    <div class="cat-start start">cat</div>
+    <div class="cat-big big-con"></div>
+    <div class="cat-sli-con num-con"></div>
+
+    <div class="cafe-start start">cafe</div>
+    <div class="cafe-big big-con"></div>
+    <div class="cafe-sli-con num-con"></div>
+
+    <div class="youtube-start start">youtube</div>
+    <div class="youtube-con"></div>
+
+
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script>
+
+        // 제이슨 가져와 로딩
+        const screenWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+        let cat_page = null
+        let cafe_page = null
+
+        $.ajax({
+            url: '/json', // 요청 보낼 URL
+            type: 'GET', // HTTP 메소드 (GET)
+            success: function (response) {
+                console.log(response)
+
+                // cat 스크립트
+
+                const big_lenght = Math.floor(response[0].length / 12)
+                $('.cat-big').css('width', big_lenght * 100 + 100 + 'vw')
+                cat_page = big_lenght
+
+                for (let big_i = 0; big_i < big_lenght; big_i++) {
+                    if (big_i === 0) {
+                        $('.cat-sli-con').append(`<span class="cat-sli-btn-${big_i} sli-btn cat-sli-btn cat-now">${big_i + 1}</span>`);
+                    } else {
+                        $('.cat-sli-con').append(`<span class="cat-sli-btn-${big_i} sli-btn cat-sli-btn">${big_i + 1}</span>`);
+                    }
+
+                    $('.cat-big').append(`<div class="cat-con-${big_i} con"></div>`);
+                    for (let i = 0; i < 12; i++) {
+                        const element = `
+                                <div class="li-cat-con">
+                                    <img class="li-cat-img" src="./cat_img/${response[0][big_i * 12 + i].image}">
+                                    <br><span>${response[0][big_i * 12 + i].breed} / ${response[0][big_i * 12 + i].gender}</span>
+                                </div>`;
+
+                        $(`.cat-con-${big_i}`).append(element);
+                    }
+                }
+                $('.cat-sli-con').append(`<span class="cat-sli-btn-${big_lenght} sli-btn cat-sli-btn">${big_lenght + 1}</span>`);
+                $('.cat-big').append('<div class="cat-con-la con"></div>');
+                for (let i = 0; i < response[0].length % 12; i++) {
+                    const element = `
+                            <div class="li-cat-con">
+                                <img class="li-cat-img" src="./cat_img/${response[0][big_lenght * 12 + i].image}">
+                                <br><span>${response[0][big_lenght * 12 + i].breed} / ${response[0][big_lenght * 12 + i].gender}</span>
+                            </div>`;
+
+                    $('.cat-con-la').append(element);
+                }
+
+                // cafe 스크립트
+
+                const cafe_big_lenght = Math.floor(response[1].length / 9)
+                $('.cafe-big').css('width', cafe_big_lenght * 100 + 100 + 'vw')
+                cafe_page = cafe_big_lenght
+
+                for (let big_i = 0; big_i < cafe_big_lenght; big_i++) {
+                    if (big_i === 0) {
+                        $('.cafe-sli-con').append(`<span class="cafe-sli-btn-${big_i} sli-btn cafe-sli-btn cafe-now">${big_i + 1}</span>`);
+                    } else {
+                        $('.cafe-sli-con').append(`<span class="cafe-sli-btn-${big_i} sli-btn cafe-sli-btn">${big_i + 1}</span>`);
+                    }
+                    $('.cafe-big').append(`<div class="cafe-con-${big_i} con"></div>`);
+                    for (let i = 0; i < 9; i++) {
+                        const element = `
+                                <div class="li-cafe-con">
+                                    <img class="li-cafe-img" src="./cafe_img/${response[1][big_i * 9 + i].image}">
+                                </div>`;
+
+                        $(`.cafe-con-${big_i}`).append(element);
+                    }
+                }
+                $('.cafe-sli-con').append(`<span class="cafe-sli-btn-${cafe_big_lenght} sli-btn cafe-sli-btn">${cafe_big_lenght + 1}</span>`);
+                $('.cafe-big').append('<div class="cafe-con-la con"></div>');
+
+                for (let i = 0; i < response[1].length % 9; i++) {
+                    const element = `
+                    <div class="li-cafe-con">
+                                <img class="li-cafe-img" src="./cafe_img/${response[1][cafe_big_lenght * 9 + i].image}">
+                                </div>`;
+
+                    $('.cafe-con-la').append(element);
+                }
+
+
+                // youtube 스크립트
+
+                for (let i = 0; i < response[2].length; i++) {
+                    const element = `
+                    <iframe src="https://www.youtube.com/embed/${response[2][i].url}" frameborder="0" allowfullscreen></iframe>`
+
+                    $('.youtube-con').append(element);
+                }
+            },
+            error: function (xhr, status, error) {
+                // 오류 발생시의 처리
+                console.error('Request failed with status:', status);
+            }
+        });
+
+
+        $(document).ready(function () {
+
+            // 슬라이드 애니메이션
+            $('.num-con').on('click', '.sli-btn', function () {
+                const string = $(this).attr('class')
+                if (string.startsWith("cat")) {
+                    $('.cat-now').removeClass('cat-now')
+                    $(this).attr('class', `cat-sli-btn-${string.charAt(12)} sli-btn cat-sli-btn cat-now`)
+                    $('.cat-big').css('transform', `translate(${-100 * string.charAt(12)}vw)`)
+                } else {
+                    $('.cafe-now').removeClass('cafe-now')
+                    $(this).attr('class', `cafe-sli-btn-${string.charAt(13)} sli-btn cafe-sli-btn cafe-now`)
+                    $('.cafe-big').css('transform', `translate(${-100 * string.charAt(13)}vw)`)
+                }
+            });
+
+            let catisDragging = false;
+            let catinitialX = 0;
+            let cattranslateX = 0;
+
+            $('.cat-big').on('touchstart', function (e) {
+                catisDragging = true;
+                catinitialX = e.touches[0].clientX - cattranslateX;
+            });
+
+            $('.cat-big').on('touchmove', function (e) {
+                if (!catisDragging) return;
+
+                const currentX = e.touches[0].clientX;
+                cattranslateX = currentX - catinitialX;
+
+                $('.cat-big').css('transform', `translateX(${cattranslateX}px)`);
+            });
+
+            $('.cat-big').on('touchend', function () {
+                catisDragging = false;
+
+                let distance = [];
+                for (let i = 0; i < cat_page + 1; i++) {
+                    distance[i] = i * screenWidth * -1;
+                }
+                const result = closestToX(cattranslateX, distance);
+                $('.cat-big').css('transform', `translateX(${result}px)`);
+
+                $('.cat-now').removeClass('cat-now');
+                console.log(result / -screenWidth);
+                $(`.cat-sli-btn-${result / -screenWidth}`).attr('class', `cat-sli-btn-${result / -screenWidth} sli-btn cat-sli-btn cat-now`);
+            });
+
+
+            let cafeisDragging = false;
+            let cafeinitialX = 0;
+            let cafetranslateX = 0;
+
+            $('.cafe-big').on('touchstart', function (e) {
+                cafeisDragging = true;
+                cafeinitialX = e.touches[0].clientX - cafetranslateX;
+            });
+
+            $('.cafe-big').on('touchmove', function (e) {
+                if (!cafeisDragging) return;
+
+                const currentX = e.touches[0].clientX;
+                cafetranslateX = currentX - cafeinitialX;
+
+                $('.cafe-big').css('transform', `translateX(${cafetranslateX}px)`);
+            });
+
+            $('.cafe-big').on('touchend', function () {
+                cafeisDragging = false;
+
+                let distance = []
+                for (let i = 0; i < cafe_page + 1; i++) {
+                    distance[i] = i * screenWidth * -1
+                }
+                const result = closestToX(cafetranslateX, distance);
+                $('.cafe-big').css('transform', `translateX(${result}px)`);
+
+                $('.cafe-now').removeClass('cafe-now')
+                console.log(result / -screenWidth)
+                $(`.cafe-sli-btn-${result / -screenWidth}`).attr('class', `cafe-sli-btn-${result / -screenWidth} sli-btn cafe-sli-btn cafe-now`)
+            });
+
+            function closestToX(x, numbers) {
+
+                let closestNumber = numbers[0];
+                let minDistance = Math.abs(x - closestNumber);
+
+                for (let i = 1; i < numbers.length; i++) {
+                    const distance = Math.abs(x - numbers[i]);
+                    if (distance < minDistance) {
+                        minDistance = distance;
+                        closestNumber = numbers[i];
+                    }
+                }
+                return closestNumber;
+            }
+
+
+            // 스크롤 애니메이션
+
+            $('.menu-cat').click(function () {
+                var offset = $('.cat-start').offset();
+                $('html').animate({ scrollTop: offset.top - 30 }, 500)
+            });
+            $('.menu-cafe').click(function () {
+                var offset = $('.cafe-start').offset();
+                $('html').animate({ scrollTop: offset.top - 30 }, 500)
+            });
+            $('.menu-you').click(function () {
+                var offset = $('.youtube-start').offset();
+                $('html').animate({ scrollTop: offset.top - 30 }, 500)
+            });
+        });
+    </script>
+</body>
+
+</html>
